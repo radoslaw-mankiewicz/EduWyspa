@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EduWyspa</title>
+
+<link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ------------------- NAV ------------------- -->
+<nav>
+  <div class="nav-container">
+    <div class="logo">
+      <span class="logo-text">EduWyspa</span>
+    </div>
+
+    <div class="nav-links">
+      <button onclick="scrollToId('o-nas')">O nas</button>
+      <button onclick="scrollToId('galeria')">Galeria</button>
+      <button onclick="scrollToId('kontakt')">Kontakt</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ------------------- HERO ------------------- -->
+<section class="hero">
+  <h1>
+    <span class="color-title">Szkoła EduWyspa</span><br>
+    Wiedza i Rozwój
+  </h1>
+  <p class="hero-subtitle">
+    Nowoczesna szkoła ogólnokształcąca z pasją do edukacji, rozwoju i nowoczesnych metod nauczania.
+  </p>
+  <button onclick="scrollToId('kontakt')">Zapisz dziecko do szkoły</button>
+</section>
+
+<!-- ------------------- ABOUT ------------------- -->
+<section id="o-nas">
+  <h2 class="section-title">Dlaczego EduWyspa?</h2>
+  <p class="section-subtitle">
+    Kompleksowa edukacja, indywidualne podejście i bezpieczne środowisko sprzyjające rozwojowi.
+  </p>
+  <br>
+  <br>
+
+  <div class="features-grid">
+    <div class="card">
+      <div class="card-icon"><img id="ikona" src="/img/czapka.png" alt=""><i class="lucide-graduation-cap"></i></div>
+      <h3>Wykwalifikowani Nauczyciele</h3>
+      <p>Doświadczeni pedagodzy, którzy kochają swoją pracę.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon"><img id="ikona" src="/img/ludzie.png" alt=""><i class="lucide-users"></i></div>
+      <h3>Małe Klasy</h3>
+      <p>Jedynie 24 uczniów w klasie, co pozwala na indywidualne podejście.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon"><img id="ikona" src="/img/Odznaka.png" alt=""><i class="lucide-shield-check"></i></div>
+      <h3>Bezpieczne Środowisko</h3>
+      <p>Stała opieka i wsparcie psychologa szkolnego.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon"><img id="ikona" src="/img/glob2.png" alt=""><i class="lucide-monitor"></i></div>
+      <h3>Nowoczesne Wyposażenie</h3>
+      <p>Tablice interaktywne, komputery i nowoczesne sale.</p>
+    </div>
+  </div>
+
+  <div class="mission-box">
+    <h3>Nasza Misja</h3>
+    <p>
+      Wierzymy, że każde dziecko zasługuje na edukację, która rozwija, motywuje i wspiera jego talenty.
+    </p>
+  </div>
+</section>
+
+<!-- ------------------- GALLERY ------------------- -->
+<section id="galeria">
+  <h2 class="section-title">Nasza Szkoła</h2>
+  <p class="section-subtitle">Zobacz, jak wygląda życie szkolne</p>
+  
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="Uczniowie podczas zajęć">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800" alt="Nowoczesna sala lekcyjna">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="Zajęcia w klasie">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800" alt="Praca grupowa">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800" alt="Lekcje z tablicą interaktywną">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800" alt="Biblioteka szkolna">
+    </div>
+  </div>
+
+</section>
+
+
+<section id="kontakt">
+  <h2 class="section-title">Skontaktuj się z nami</h2>
+  <p class="section-subtitle">Chętnie pomożemy i odpowiemy na wszystkie pytania</p>
+  <br>
+  <div class="contact-grid">
+    <div class="card">
+      <div class="card-icon-telefon"><img id="ikona" src="/img/telefon.png" alt=""><i class="lucide-monitor"></i></div>
+      <h3>Telefon</h3>
+      <p>607 050 160</p>
+    </div>
+    <div class="card">
+      <div class="card-icon-mail"><img id="ikona" src="/img/mail.png" alt=""><i class="lucide-monitor"></i></div>
+      <h3>Email</h3>
+      <p><a href="mailto:kontakt@eduwyspa.gda.pl>">kontakt@eduwyspa.gda.pl</a></p>
+    </div>
+    <div class="card">
+      <div class="card-icon-mapa"><img id="ikona" src="/img/pinezka.png" alt=""><i class="lucide-monitor"></i></div>
+      <h3>Adres</h3>
+      <p>ul. Boguckiego 5b <br>
+        80-690 Gdańsk <br>
+        Wyspa Sobieszewska
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------- FOOTER ------------------- -->
+<footer>
+  <h3>EduWyspa</h3>
+  <p>Nowoczesna edukacja od 2010 roku</p>
+  <p class="copy">© 2024 EduWyspa</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
