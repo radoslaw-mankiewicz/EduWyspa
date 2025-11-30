@@ -1,150 +1,303 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>EduWyspa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduWyspa</title>
 
-<link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Framer Motion replacement – proste animacje w JS -->
+  <style>
+    .fade-up { opacity: 0; transform: translateY(20px); transition: 0.8s; }
+    .fade-up.show { opacity: 1; transform: translateY(0); }
+
+    .scale-in { opacity: 0; transform: scale(0.9); transition: 0.5s; }
+    .scale-in.show { opacity: 1; transform: scale(1); }
+
+    .bounce { animation: bounce 1.6s infinite; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+  </style>
 </head>
+<body class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white">
 
-<body>
+<script>
+// Scroll do sekcji
+function scrollToSection(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+}
 
-<!-- ------------------- NAV ------------------- -->
-<nav>
-  <div class="nav-container">
-    <div class="logo">
-      <span class="logo-text">EduWyspa</span>
+// Animacje on-scroll
+function revealOnScroll() {
+  document.querySelectorAll('.fade-up, .scale-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) {
+      el.classList.add('show');
+    }
+  });
+}
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+
+<!-- ================= NAVIGATION ================= -->
+<nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50 text-slate-800">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3 fade-up">
+      <div class="w-12 h-12 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
+        <i data-lucide="graduation-cap" class="text-white"></i>
+      </div>
+      <span class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+        EduWyspa
+      </span>
     </div>
 
-    <div class="nav-links">
-      <button onclick="scrollToId('o-nas')">O nas</button>
-      <button onclick="scrollToId('galeria')">Galeria</button>
-      <button onclick="scrollToId('kontakt')">Kontakt</button>
+    <div class="hidden md:flex gap-8 font-medium">
+      <button onclick="scrollToSection('o-nas')" class="hover:text-indigo-600 transition">O nas</button>
+      <button onclick="scrollToSection('galeria')" class="hover:text-indigo-600 transition">Galeria</button>
+      <button onclick="scrollToSection('kontakt')" class="hover:text-indigo-600 transition">Kontakt</button>
     </div>
   </div>
 </nav>
 
-<!-- ------------------- HERO ------------------- -->
-<section class="hero">
-  <h1>
-    <span class="color-title">Szkoła EduWyspa</span><br>
-    Wiedza i Rozwój
-  </h1>
-  <p class="hero-subtitle">
-    Nowoczesna szkoła ogólnokształcąca z pasją do edukacji, rozwoju i nowoczesnych metod nauczania.
-  </p>
-  <button onclick="scrollToId('kontakt')">Zapisz dziecko do szkoły</button>
-</section>
 
-<!-- ------------------- ABOUT ------------------- -->
-<section id="o-nas">
-  <h2 class="section-title">Dlaczego EduWyspa?</h2>
-  <p class="section-subtitle">
-    Kompleksowa edukacja, indywidualne podejście i bezpieczne środowisko sprzyjające rozwojowi.
-  </p>
-  <br>
-  <br>
+<!-- ================= HERO ================= -->
+<section class="pt-32 pb-20 px-6 text-center">
+  <div class="max-w-7xl mx-auto">
+    <div class="fade-up">
+      <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+        <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          Szkoła EduWyspa
+        </span><br />
+        <span class="text-white">Wiedza i Rozwój</span>
+      </h1>
 
-  <div class="features-grid">
-    <div class="card">
-      <div class="card-icon"><img id="ikona" src="czapka.png" alt=""><i class="lucide-graduation-cap"></i></div>
-      <h3>Wykwalifikowani Nauczyciele</h3>
-      <p>Doświadczeni pedagodzy, którzy kochają swoją pracę.</p>
+      <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto">
+        Nowoczesna szkoła ogólnokształcąca z pasją do edukacji. Doświadczeni nauczyciele,
+        indywidualne podejście, przyjazna atmosfera.
+      </p>
+
+      <button onclick="scrollToSection('kontakt')" class="bg-gradient-to-r from-indigo-600 to-purple-600 px-10 py-5 rounded-full text-lg shadow-xl hover:shadow-2xl transition">
+        Zapisz dziecko do szkoły
+      </button>
     </div>
 
-    <div class="card">
-      <div class="card-icon"><img id="ikona" src="ludzie.png" alt=""><i class="lucide-users"></i></div>
-      <h3>Małe Klasy</h3>
-      <p>Jedynie 24 uczniów w klasie, co pozwala na indywidualne podejście.</p>
+    <div class="mt-16 opacity-0 fade-up">
+      <i data-lucide="chevron-down" class="w-8 h-8 text-slate-400 mx-auto bounce"></i>
     </div>
-
-    <div class="card">
-      <div class="card-icon"><img id="ikona" src="Odznaka.png" alt=""><i class="lucide-shield-check"></i></div>
-      <h3>Bezpieczne Środowisko</h3>
-      <p>Stała opieka i wsparcie psychologa szkolnego.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon"><img id="ikona" src="glob2.png" alt=""><i class="lucide-monitor"></i></div>
-      <h3>Nowoczesne Wyposażenie</h3>
-      <p>Tablice interaktywne, komputery i nowoczesne sale.</p>
-    </div>
-  </div>
-
-  <div class="mission-box">
-    <h3>Nasza Misja</h3>
-    <p>
-      Wierzymy, że każde dziecko zasługuje na edukację, która rozwija, motywuje i wspiera jego talenty.
-    </p>
   </div>
 </section>
 
-<!-- ------------------- GALLERY ------------------- -->
-<section id="galeria">
-  <h2 class="section-title">Nasza Szkoła</h2>
-  <p class="section-subtitle">Zobacz, jak wygląda życie szkolne</p>
-  
 
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="Uczniowie podczas zajęć">
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800" alt="Nowoczesna sala lekcyjna">
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="Zajęcia w klasie">
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800" alt="Praca grupowa">
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800" alt="Lekcje z tablicą interaktywną">
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800" alt="Biblioteka szkolna">
-    </div>
-  </div>
-
-</section>
-
-
-<section id="kontakt">
-  <h2 class="section-title">Skontaktuj się z nami</h2>
-  <p class="section-subtitle">Chętnie pomożemy i odpowiemy na wszystkie pytania</p>
-  <br>
-  <div class="contact-grid">
-    <div class="card">
-      <div class="card-icon-telefon"><img id="ikona" src="telefon.png" alt=""><i class="lucide-monitor"></i></div>
-      <h3>Telefon</h3>
-      <p>607 050 160</p>
-    </div>
-    <div class="card">
-      <div class="card-icon-mail"><img id="ikona" src="mail.png" alt=""><i class="lucide-monitor"></i></div>
-      <h3>Email</h3>
-      <p><a href="mailto:kontakt@eduwyspa.gda.pl>">kontakt@eduwyspa.gda.pl</a></p>
-    </div>
-    <div class="card">
-      <div class="card-icon-mapa"><img id="ikona" src="pinezka.png" alt=""><i class="lucide-monitor"></i></div>
-      <h3>Adres</h3>
-      <p>ul. Boguckiego 5b <br>
-        80-690 Gdańsk <br>
-        Wyspa Sobieszewska
+<!-- ================= O NAS ================= -->
+<section id="o-nas" class="py-20 px-6 bg-slate-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-up">
+      <h2 class="text-5xl font-bold mb-6">Dlaczego EduWyspa?</h2>
+      <p class="text-xl text-slate-300">
+        Kompleksowa edukacja w przyjaznym środowisku, które inspiruje do nauki.
       </p>
     </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Feature cards -->
+      <script>
+        const featureIcons = ['graduation-cap','users','award','globe'];
+        const featureData = [
+          {
+            title: 'Wykwalifikowani Nauczyciele',
+            desc: 'Nasi pedagodzy to pasjonaci z doświadczeniem i nowoczesnym podejściem.'
+          },
+          {
+            title: 'Małe Klasy',
+            desc: 'Maksymalnie 24 uczniów w klasie gwarantuje indywidualne podejście.'
+          },
+          {
+            title: 'Bezpieczne Środowisko',
+            desc: 'Monitoring, opieka, wsparcie pedagoga — pełne bezpieczeństwo.'
+          },
+          {
+            title: 'Nowoczesne Wyposażenie',
+            desc: 'Tablice interaktywne, pracownie komputerowe, biblioteka i więcej.'
+          }
+        ];
+      </script>
+    </div>
+
+    <script>
+      const featureContainer = document.currentScript.previousElementSibling;
+      const colors = [
+        'from-blue-500 to-cyan-500',
+        'from-purple-500 to-pink-500',
+        'from-orange-500 to-red-500',
+        'from-green-500 to-emerald-500'
+      ];
+
+      featureData.forEach((item, i) => {
+        featureContainer.insertAdjacentHTML('beforeend', `
+          <div class="p-8 bg-slate-700/50 rounded-2xl fade-up">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br ${colors[i]} flex items-center justify-center mb-6">
+              <i data-lucide="${featureIcons[i]}"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-3">${item.title}</h3>
+            <p class="text-slate-300">${item.desc}</p>
+          </div>
+        `);
+      });
+    </script>
+
+    <!-- Mission -->
+    <div class="mt-20 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 text-center fade-up">
+      <h3 class="text-3xl font-bold mb-6">Nasza Misja</h3>
+      <p class="text-lg opacity-90">
+        W EduWyspie wierzymy, że każde dziecko zasługuje na najlepszą edukację.
+      </p>
+    </div>
+
+    <!-- Values -->
+    <div class="mt-16 fade-up">
+      <h3 class="text-3xl font-bold text-center mb-10">Nasze Wartości</h3>
+      <div class="grid md:grid-cols-4 gap-6">
+        <script>
+          const values = [
+            { icon:'heart', title:'Szacunek', desc:'Uczymy wzajemnego szacunku.' },
+            { icon:'target', title:'Rozwój', desc:'Wspieramy rozwój każdego ucznia.' },
+            { icon:'handshake', title:'Współpraca', desc:'Budujemy relacje rodzic–uczeń–szkoła.' },
+            { icon:'sparkles', title:'Pasja', desc:'Rozbudzamy ciekawość do nauki.' }
+          ];
+
+          const valuesColors = [
+            'from-red-500 to-pink-500',
+            'from-blue-500 to-cyan-500',
+            'from-green-500 to-emerald-500',
+            'from-yellow-500 to-orange-500'
+          ];
+        </script>
+      </div>
+    </div>
+
+    <script>
+      const valuesContainer = document.currentScript.previousElementSibling.querySelector('div');
+
+      values.forEach((v, i) => {
+        valuesContainer.insertAdjacentHTML('beforeend', `
+          <div class="p-6 text-center bg-slate-700/50 rounded-2xl fade-up">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br ${valuesColors[i]} flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="${v.icon}" class="text-white"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-2">${v.title}</h4>
+            <p class="text-slate-400">${v.desc}</p>
+          </div>
+        `);
+      });
+    </script>
   </div>
 </section>
 
-<!-- ------------------- FOOTER ------------------- -->
-<footer>
-  <h3>EduWyspa</h3>
-  <p>Nowoczesna edukacja od 2010 roku</p>
-  <p class="copy">© 2024 EduWyspa</p>
+
+<!-- ================= EDUWYSPA W LICZBACH ================= -->
+<section id="liczby" class="py-24 px-6 bg-slate-900">
+  <div class="max-w-7xl mx-auto text-center fade-up">
+    <h2 class="text-5xl font-bold mb-12">EduWyspa w liczbach</h2>
+    <div class="grid md:grid-cols-4 gap-12">
+      <div class="scale-in"><p class="text-6xl font-bold text-indigo-500">15</p><p class="text-lg text-slate-300">Lat doświadczenia</p></div>
+      <div class="scale-in"><p class="text-6xl font-bold text-purple-500">320</p><p class="text-lg text-slate-300">Uczniów</p></div>
+      <div class="scale-in"><p class="text-6xl font-bold text-pink-500">42</p><p class="text-lg text-slate-300">Nauczycieli</p></div>
+      <div class="scale-in"><p class="text-6xl font-bold text-blue-500">98%</p><p class="text-lg text-slate-300">Zadowolenia</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NASZA SZKOŁA ================= -->
+<section id="nasza-szkola" class="py-24 px-6 bg-slate-800">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-5xl font-bold text-center mb-12 fade-up">Nasza szkoła</h2>
+    <p class="text-lg text-slate-300 text-center max-w-3xl mx-auto fade-up mb-16">Poznaj nasze sale, przestrzenie i wyjątkową atmosferę edukacji.</p>
+    <div class="grid md:grid-cols-3 gap-8 fade-up">
+      <div class="bg-slate-700/40 rounded-2xl h-64"></div>
+      <div class="bg-slate-700/40 rounded-2xl h-64"></div>
+      <div class="bg-slate-700/40 rounded-2xl h-64"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPINIE RODZICÓW ================= -->
+<section id="opinie" class="py-24 px-6 bg-slate-800">
+  <div class="max-w-5xl mx-auto text-center fade-up">
+    <h2 class="text-5xl font-bold mb-12">Opinie rodziców</h2>
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="bg-slate-700/40 p-8 rounded-2xl text-left">
+        <p class="text-slate-300 italic mb-4">„Wspaniała szkoła! Moje dziecko uwielbia zajęcia i nauczycieli.”</p>
+        <p class="font-bold text-white">— Anna, mama uczennicy</p>
+      </div>
+      <div class="bg-slate-700/40 p-8 rounded-2xl text-left">
+        <p class="text-slate-300 italic mb-4">„Świetna atmosfera, wysoki poziom i indywidualne podejście.”</p>
+        <p class="font-bold text-white">— Marek, tata ucznia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAKT ================= -->
+<section id="kontakt" class="py-24 px-6 bg-slate-900">
+  <div class="max-w-6xl mx-auto text-center fade-up">
+    <h2 class="text-5xl font-bold mb-4">Skontaktuj się z nami</h2>
+    <p class="text-slate-300 mb-16">Chętnie pomożemy i odpowiemy na wszystkie pytania</p>
+
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <!-- Telefon -->
+      <div class="bg-slate-800/60 rounded-2xl p-10 text-center shadow-lg fade-up">
+        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mx-auto mb-6">
+          <i data-lucide="phone" class="text-white w-10 h-10"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Telefon</h3>
+        <p class="text-slate-300 text-lg">607 050 160</p>
+      </div>
+
+      <!-- Email -->
+      <div class="bg-slate-800/60 rounded-2xl p-10 text-center shadow-lg fade-up">
+        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500 to-fuchsia-600 flex items-center justify-center mx-auto mb-6">
+          <i data-lucide="mail" class="text-white w-10 h-10"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Email</h3>
+        <p class="text-slate-300 text-lg">kontakt@eduwyspa.gda.pl</p>
+      </div>
+
+      <!-- Adres -->
+      <div class="bg-slate-800/60 rounded-2xl p-10 text-center shadow-lg fade-up">
+        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center mx-auto mb-6">
+          <i data-lucide="map-pin" class="text-white w-10 h-10"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Adres</h3>
+        <p class="text-slate-300 text-lg leading-relaxed">
+          ul. Boguckiego 5b<br>
+          80-690 Gdańsk<br>
+          Wyspa Sobieszewska
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= --> ================= -->
+<footer class="py-10 text-center text-slate-400 bg-slate-950">
+  © 2025 EduWyspa — Wszystkie prawa zastrzeżone
 </footer>
 
-<script src="main.js"></script>
+<!-- ================= LUCIDE INIT ================= -->
+<script>
+  lucide.createIcons();
+</script>
+
 </body>
 </html>
-
